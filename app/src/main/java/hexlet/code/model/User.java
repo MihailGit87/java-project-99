@@ -1,6 +1,5 @@
 package hexlet.code.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -8,6 +7,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,18 +27,16 @@ public class User {
     @GeneratedValue(strategy = IDENTITY)
     private long id;
 
-    @NotNull
     private String firstName;
 
-    @NotNull
     private String lastName;
 
     @NotNull
     @Email
-    @Column(unique = true)
     private String email;
 
     @NotBlank
+    @Size(min = 3)
     private String password;
 
     @CreatedDate
