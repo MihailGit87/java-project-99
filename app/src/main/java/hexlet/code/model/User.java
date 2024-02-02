@@ -1,8 +1,7 @@
 package hexlet.code.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -14,6 +13,7 @@ import java.time.LocalDate;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+@Entity
 @Table(name = "users")
 @Getter
 @Setter
@@ -23,7 +23,6 @@ public class User {
     @GeneratedValue(strategy = IDENTITY)
     private long id;
 
-//    расставить аннотации валидации
     @NotNull
     private String firstName;
 
@@ -31,6 +30,8 @@ public class User {
     private String lastName;
 
     @NotNull
+    @Email
+    @Column(unique = true)
     private String email;
 
     @NotBlank
