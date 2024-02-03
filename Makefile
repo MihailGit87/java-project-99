@@ -1,11 +1,5 @@
-setup:
-	./gradlew wrapper --gradle-version 8.2.1
-
-clean:
-	./gradlew clean
-
-build:
-	./gradlew clean build
+run-dist:
+	./build/install/app/bin/app
 
 start:
 	./gradlew bootRun --args='--spring.profiles.active=dev'
@@ -13,11 +7,11 @@ start:
 start-prod:
 	./gradlew bootRun --args='--spring.profiles.active=prod'
 
-install:
-	./gradlew installDist
+build:
+	./gradlew build
 
-lint:
-	./gradlew checkstyleMain checkstyleTest
+clean:
+	./gradlew clean
 
 test:
 	./gradlew test
@@ -25,14 +19,9 @@ test:
 report:
 	./gradlew jacocoTestReport
 
-check-updates:
-	./gradlew dependencyUpdates
+lint:
+	./gradlew checkstyleMain checkstyleTest
 
-generate-migrations:
-	./gradlew diffChangeLog
-
-db-migrate:
-	./gradlew update
-
+build-run: build run
 
 .PHONY: build
