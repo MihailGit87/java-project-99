@@ -2,14 +2,22 @@ package hexlet.code.controller.api;
 
 import hexlet.code.dto.UserCreateDto;
 import hexlet.code.dto.UserDto;
-import hexlet.code.dto.UserUpdateDto;
+//import hexlet.code.dto.UserUpdateDto;
 import hexlet.code.exeption.ResourceNotFoundException;
 import hexlet.code.mapper.UserMapper;
 import hexlet.code.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 
@@ -50,16 +58,16 @@ public class UserController {
         return userDto;
     }
 
-    @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    UserDto update(@RequestBody UserUpdateDto userData, @PathVariable Long id) {
-        var user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Not Found"));
-        userMapper.update(userData, user);
-        userRepository.save(user);
-        var userDTO = userMapper.map(user);
-        return userDTO;
-    }
+//    @PutMapping("/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    UserDto update(@RequestBody UserUpdateDto userData, @PathVariable Long id) {
+//        var user = userRepository.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("Not Found"));
+//        userMapper.update(userData, user);
+//        userRepository.save(user);
+//        var userDTO = userMapper.map(user);
+//        return userDTO;
+//    }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
