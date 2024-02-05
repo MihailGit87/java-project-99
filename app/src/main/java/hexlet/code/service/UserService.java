@@ -1,12 +1,11 @@
 package hexlet.code.service;
 
-import hexlet.code.dto.UserCreateDto;
-import hexlet.code.dto.UserDto;
-import hexlet.code.dto.UserUpdateDto;
+import hexlet.code.dto.UserDTO.UserCreateDto;
+import hexlet.code.dto.UserDTO.UserDto;
+import hexlet.code.dto.UserDTO.UserUpdateDto;
 import hexlet.code.exeption.ResourceNotFoundException;
 import hexlet.code.mapper.UserMapper;
 import hexlet.code.repository.UserRepository;
-import hexlet.code.util.UserUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
