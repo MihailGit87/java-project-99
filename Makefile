@@ -1,26 +1,21 @@
+.DEFAULT_GOAL := build-run
+
 run-dist:
-	./build/install/app/bin/app
-
-start:
-	./gradlew bootRun --args='--spring.profiles.active=dev'
-
-start-prod:
-	./gradlew bootRun --args='--spring.profiles.active=prod'
+	make -C app run-dist
 
 build:
-	./gradlew build
+	make -C app build
 
-clean:
-	./gradlew clean
+run:
+	make -C app run
 
 test:
-	./gradlew test
+	make -C app test
 
 report:
-	./gradlew jacocoTestReport
-
+	make -C app report
 lint:
-	./gradlew checkstyleMain checkstyleTest
+	make -C app lint
 
 build-run: build run
 
