@@ -8,7 +8,6 @@ plugins {
 	id("com.github.ben-manes.versions") version "0.47.0"
 	id("com.adarshr.test-logger") version "4.0.0"
 	id("io.sentry.jvm.gradle") version "4.1.0"
-	id("io.freefair.lombok") version "8.4"
 }
 
 group = "hexlet.code"
@@ -41,8 +40,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 
-//	implementation("org.springframework.boot:spring-boot-starter-security")
-//	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
 
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
@@ -69,7 +68,6 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
 }
 
-
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
@@ -85,8 +83,3 @@ tasks.jacocoTestReport {
 		xml.required = true
 	}
 }
-
-//testlogger {
-//	theme = ThemeType.MOCHA
-//	showStandardStreams = true
-//}

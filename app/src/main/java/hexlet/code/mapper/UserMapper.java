@@ -2,11 +2,11 @@ package hexlet.code.mapper;
 
 import hexlet.code.dto.UserCreateDto;
 import hexlet.code.dto.UserDto;
-//import hexlet.code.dto.UserUpdateDto;
+import hexlet.code.dto.UserUpdateDto;
 import hexlet.code.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
-//import org.mapstruct.MappingTarget;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.ReportingPolicy;
 
@@ -19,5 +19,5 @@ public abstract class UserMapper {
 
     public abstract User map(UserCreateDto dto);
     public abstract UserDto map(User model);
-//    public abstract void update(UserUpdateDto dto, @MappingTarget User model);
+    public abstract void update(UserUpdateDto dto, @MappingTarget User model);
 }
