@@ -4,7 +4,7 @@ import hexlet.code.model.User;
 import hexlet.code.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,15 +15,15 @@ public class UserUtils {
     public static final String ADMIN_EMAIL = "hexlet@example.com";
     public static final String ADMIN_PASSWORD = "qwerty";
 
-    @Bean
-    public User getCurrentUser() {
-        var authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated()) {
-            return null;
-        }
-        var email = authentication.getName();
-        return userRepository.findByEmail(email).get();
-    }
+//    @Bean
+//    public User getCurrentUser() {
+//        var authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication == null || !authentication.isAuthenticated()) {
+//            return null;
+//        }
+//        var email = authentication.getName();
+//        return userRepository.findByEmail(email).get();
+//    }
 
     @Bean
     public User getAdmin() {
