@@ -44,7 +44,7 @@ public class UserService {
 
     public UserDto update(UserUpdateDto dto, Long id) {
         var user = userRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
         userMapper.update(dto, user);
 
         var hashedPassword = passwordEncoder.encode(user.getPassword());

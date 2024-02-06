@@ -52,6 +52,11 @@ public class UserControllerTest {
         token = jwt().jwt(builder -> builder.subject(UserUtils.ADMIN_EMAIL));
     }
 
+    @AfterEach
+    public void clean() {
+        testUtils.clean();
+    }
+
     @Test
     public void testIndex() throws Exception {
         var user = testUtils.generateUser();
