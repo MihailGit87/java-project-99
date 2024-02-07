@@ -1,7 +1,7 @@
 package hexlet.code.service;
 
 //import hexlet.code.dto.UserDTO.UserCreateDto;
-import hexlet.code.dto.UserDTO.UserDto;
+import hexlet.code.dto.userDto.UserDto;
 //import hexlet.code.dto.UserDTO.UserUpdateDto;
 import hexlet.code.exeption.ResourceNotFoundException;
 import hexlet.code.mapper.UserMapper;

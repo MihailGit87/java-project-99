@@ -1,4 +1,4 @@
-package hexlet.code.dto.UserDTO;
+package hexlet.code.dto.userDto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

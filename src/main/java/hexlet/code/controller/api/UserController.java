@@ -1,7 +1,7 @@
 package hexlet.code.controller.api;
 
 //import hexlet.code.dto.UserDTO.UserCreateDto;
-import hexlet.code.dto.UserDTO.UserDto;
+import hexlet.code.dto.userDto.UserDto;
 //import hexlet.code.dto.UserDTO.UserUpdateDto;
 import hexlet.code.service.UserService;
 //import jakarta.validation.Valid;
