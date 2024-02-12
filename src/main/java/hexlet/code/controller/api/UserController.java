@@ -1,8 +1,8 @@
 package hexlet.code.controller.api;
 
-import hexlet.code.dto.UserDTO.UserCreateDto;
+import hexlet.code.dto.userDto.UserCreateDto;
 import hexlet.code.dto.userDto.UserDto;
-import hexlet.code.dto.UserDTO.UserUpdateDto;
+import hexlet.code.dto.userDto.UserUpdateDto;
 import hexlet.code.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
