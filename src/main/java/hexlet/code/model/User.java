@@ -24,7 +24,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Table(name = "users")
 @Getter
 @Setter
-public class User implements UserDetails {
+public class User implements UserDetails, BaseEntity{
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
