@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.time.LocalDate;
 
@@ -34,4 +36,6 @@ public class TaskStatus implements BaseEntity{
     @CreatedDate
     private LocalDate createdAt;
 
+    @OneToMany(mappedBy = "taskStatus", cascade = CascadeType.MERGE)
+    private List<Task> tasks = new ArrayList<>();
 }

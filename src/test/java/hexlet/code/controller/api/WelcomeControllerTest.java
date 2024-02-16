@@ -19,7 +19,7 @@ class WelcomeControllerTest {
 
     @Test
     public void testWelcomePage() throws Exception {
-        var result = mockMvc.perform(get("/welcome"))
+        var result = mockMvc.perform(get("/api/welcome"))
                 .andExpect(status().isOk())
                 .andReturn();
         var body = result.getResponse().getContentAsString();

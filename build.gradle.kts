@@ -83,3 +83,14 @@ tasks.jacocoTestReport {
 		xml.required = true
 	}
 }
+
+sentry {
+	includeSourceContext.set(true)
+	org.set("mikhail-vasilev")
+	projectName.set("task-manager")
+	authToken.set(System.getenv("SENTRY_AUTH_TOKEN"))
+}
+
+tasks.sentryBundleSourcesJava {
+	enabled = System.getenv("SENTRY_AUTH_TOKEN") != null
+}
