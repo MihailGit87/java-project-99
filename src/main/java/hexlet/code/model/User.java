@@ -1,6 +1,11 @@
 package hexlet.code.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,7 +28,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Table(name = "users")
 @Getter
 @Setter
-public class User implements UserDetails, BaseEntity{
+public class User implements UserDetails, BaseEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
