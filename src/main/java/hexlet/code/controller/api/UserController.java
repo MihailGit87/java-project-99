@@ -5,6 +5,7 @@ import hexlet.code.dto.userDto.UserDto;
 import hexlet.code.dto.userDto.UserUpdateDto;
 import hexlet.code.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,6 +28,7 @@ public class UserController {
     private static final String ONLY_OWNER_BY_ID
             = "@userRepository.findById(#id).get().getEmail() == authentication.getName()";
 
+    @Autowired
     private UserService userService;
 
     @GetMapping("")
