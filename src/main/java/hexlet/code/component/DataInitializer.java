@@ -1,34 +1,47 @@
 package hexlet.code.component;
 
-import hexlet.code.dto.userDto.UserCreateDto;
-import hexlet.code.mapper.UserMapper;
-import hexlet.code.repository.UserRepository;
+import hexlet.code.repository.LabelRepository;
+import hexlet.code.repository.TaskStatusRepository;
+import hexlet.code.service.CustomUserDetailsService;
+import hexlet.code.util.LabelUtils;
+import hexlet.code.util.TaskStatusUtils;
+import hexlet.code.util.UserUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
 public class DataInitializer implements ApplicationRunner {
 
-    private UserRepository userRepository;
-    private UserMapper userMapper;
-    private PasswordEncoder passwordEncoder;
+    private final TaskStatusRepository taskStatusRepository;
+
+    private final LabelRepository labelRepository;
+
+    private final CustomUserDetailsService userService;
+
+    private final UserUtils userUtils;
+
+    private final TaskStatusUtils taskStatusUtils;
+
+    private final LabelUtils labelUtils;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        addAdminUser();
-    }
+        var admin = userUtils.getAdmin();
+        userService.createUser(admin);
 
-    private void addAdminUser() {
-        var userData = new UserCreateDto();
-        userData.setEmail("hexlet@example.com");
-        userData.setPassword("qwerty");
-        var user = userMapper.map(userData);
-        var hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
-        userRepository.save(user);
+        var defaultTaskStatuses = taskStatusUtils.getDefaultTaskStatuses();
+
+        for (var status: defaultTaskStatuses) {
+            taskStatusRepository.save(status);
+        }
+
+        var defaultLabels = labelUtils.getDefaultLabels();
+
+        for (var label: defaultLabels) {
+            labelRepository.save(label);
+        }
     }
 }

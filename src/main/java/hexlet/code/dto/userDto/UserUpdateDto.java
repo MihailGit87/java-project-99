@@ -4,17 +4,18 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 @Getter
 @Setter
 public class UserUpdateDto {
     @Email
-    private String email;
+    private JsonNullable<String> email;
 
-    private String firstName;
+    private JsonNullable<String> firstName;
 
-    private String lastName;
+    private JsonNullable<String> lastName;
 
     @NotBlank
-    private String password;
+    private JsonNullable<String> password;
 }

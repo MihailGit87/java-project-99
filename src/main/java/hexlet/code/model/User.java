@@ -58,6 +58,11 @@ public class User implements UserDetails, BaseEntity {
     private List<Task> tasks = new ArrayList<>();
 
     @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return new ArrayList<>();
     }
