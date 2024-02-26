@@ -121,7 +121,7 @@ public class UserControllerTest {
                 json -> json.node("firstName").isEqualTo(addedUser.getFirstName()),
                 json -> json.node("lastName").isEqualTo(addedUser.getLastName()),
                 json -> json.node("email").isEqualTo(addedUser.getEmail()),
-                json -> json.node("createdAt").isEqualTo(TestUtils.FORMATTER.format(addedUser.getCreatedAt()))
+                json -> json.node("createdAt").isEqualTo(addedUser.getCreatedAt().format(TestUtils.FORMATTER))
         );
 
         var userHashedPassword = addedUser.getPassword();
