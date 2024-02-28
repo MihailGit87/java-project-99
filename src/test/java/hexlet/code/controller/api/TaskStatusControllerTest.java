@@ -207,15 +207,4 @@ public class TaskStatusControllerTest {
 
         assertThat(taskStatusRepository.findBySlug(taskStatus.getSlug())).isPresent();
     }
-
-//    @Test
-//    public void testDestroyButStatusIsUsing() throws Exception {
-//        var task = testUtils.generateTask();
-//        taskRepository.save(task);
-//
-//        var taskStatus = task.getTaskStatus();
-//
-//        mockMvc.perform(delete("/api/task_statuses/" + taskStatus.getId()).with(token))
-//                .andExpect(status().isInternalServerError());
-//    }
 }
