@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.assertj.core.api.Assertions.assertThat;
-//import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -76,54 +76,54 @@ public class TaskStatusControllerTest {
         assertThat(taskStatuses).containsAll(expected);
     }
 
-//    @Test
-//    public void testShow() throws Exception {
-//        var taskStatus = testUtils.generateTaskStatus();
-//        taskStatusRepository.save(taskStatus);
-//
-//        var result = mockMvc.perform(get("/api/task_statuses/" + taskStatus.getId()).with(token))
-//                .andExpect(status().isOk())
-//                .andReturn();
-//
-//        var body = result.getResponse().getContentAsString();
-//        assertThatJson(body).isNotNull().and(
-//                json -> json.node("id").isEqualTo(taskStatus.getId()),
-//                json -> json.node("name").isEqualTo(taskStatus.getName()),
-//                json -> json.node("slug").isEqualTo(taskStatus.getSlug()),
-//                json -> json.node("createdAt").isEqualTo(taskStatus.getCreatedAt().format(TestUtils.FORMATTER))
-//        );
-//
-//        var receivedTaskStatus = om.readValue(body, TaskStatus.class);
-//        assertThat(receivedTaskStatus).isEqualTo(taskStatus);
-//    }
-//
-//    @Test
-//    public void testCreate() throws Exception {
-//        var taskStatus = testUtils.generateTaskStatus();
-//
-//        var request = post("/api/task_statuses")
-//                .with(token)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(om.writeValueAsString(taskStatus));
-//
-//        var result = mockMvc.perform(request)
-//                .andExpect(status().isCreated())
-//                .andReturn();
-//
-//        var body = result.getResponse().getContentAsString();
-//
-//        var id = om.readTree(body).get("id").asLong();
-//        assertThat(taskStatusRepository.findById(id)).isPresent();
-//
-//        var addedTaskStatus = taskStatusRepository.findById(id).get();
-//
-//        assertThatJson(body).isNotNull().and(
-//                json -> json.node("id").isEqualTo(addedTaskStatus.getId()),
-//                json -> json.node("name").isEqualTo(addedTaskStatus.getName()),
-//                json -> json.node("slug").isEqualTo(addedTaskStatus.getSlug()),
-//                json -> json.node("createdAt").isEqualTo(addedTaskStatus.getCreatedAt().format(TestUtils.FORMATTER))
-//        );
-//    }
+    @Test
+    public void testShow() throws Exception {
+        var taskStatus = testUtils.generateTaskStatus();
+        taskStatusRepository.save(taskStatus);
+
+        var result = mockMvc.perform(get("/api/task_statuses/" + taskStatus.getId()).with(token))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        var body = result.getResponse().getContentAsString();
+        assertThatJson(body).isNotNull().and(
+                json -> json.node("id").isEqualTo(taskStatus.getId()),
+                json -> json.node("name").isEqualTo(taskStatus.getName()),
+                json -> json.node("slug").isEqualTo(taskStatus.getSlug()),
+                json -> json.node("createdAt").isEqualTo(taskStatus.getCreatedAt().format(TestUtils.FORMATTER))
+        );
+
+        var receivedTaskStatus = om.readValue(body, TaskStatus.class);
+        assertThat(receivedTaskStatus).isEqualTo(taskStatus);
+    }
+
+    @Test
+    public void testCreate() throws Exception {
+        var taskStatus = testUtils.generateTaskStatus();
+
+        var request = post("/api/task_statuses")
+                .with(token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(om.writeValueAsString(taskStatus));
+
+        var result = mockMvc.perform(request)
+                .andExpect(status().isCreated())
+                .andReturn();
+
+        var body = result.getResponse().getContentAsString();
+
+        var id = om.readTree(body).get("id").asLong();
+        assertThat(taskStatusRepository.findById(id)).isPresent();
+
+        var addedTaskStatus = taskStatusRepository.findById(id).get();
+
+        assertThatJson(body).isNotNull().and(
+                json -> json.node("id").isEqualTo(addedTaskStatus.getId()),
+                json -> json.node("name").isEqualTo(addedTaskStatus.getName()),
+                json -> json.node("slug").isEqualTo(addedTaskStatus.getSlug()),
+                json -> json.node("createdAt").isEqualTo(addedTaskStatus.getCreatedAt().format(TestUtils.FORMATTER))
+        );
+    }
 
     @Test
     public void testCreateWithoutAuthorization() throws Exception {
