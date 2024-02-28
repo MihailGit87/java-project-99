@@ -1,12 +1,12 @@
 package hexlet.code.controller.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
-//import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.assertThatJson;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -77,52 +77,52 @@ public class LabelControllerTest {
         assertThat(labels).containsAll(expected);
     }
 
-//    @Test
-//    public void testShow() throws Exception {
-//        var label = testUtils.generateLabel();
-//        labelRepository.save(label);
-//
-//        var result = mockMvc.perform(get("/api/labels/" + label.getId()).with(token))
-//                .andExpect(status().isOk())
-//                .andReturn();
-//
-//        var body = result.getResponse().getContentAsString();
-//        assertThatJson(body).isNotNull().and(
-//                json -> json.node("id").isEqualTo(label.getId()),
-//                json -> json.node("name").isEqualTo(label.getName()),
-//                json -> json.node("createdAt").isEqualTo(label.getCreatedAt().format(TestUtils.FORMATTER))
-//        );
-//
-//        var receivedLabel = om.readValue(body, Label.class);
-//        assertThat(receivedLabel).isEqualTo(label);
-//    }
-//
-//    @Test
-//    public void testCreate() throws Exception {
-//        var label = testUtils.generateLabel();
-//
-//        var request = post("/api/labels")
-//                .with(token)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(om.writeValueAsString(label));
-//
-//        var result = mockMvc.perform(request)
-//                .andExpect(status().isCreated())
-//                .andReturn();
-//
-//        var body = result.getResponse().getContentAsString();
-//
-//        var id = om.readTree(body).get("id").asLong();
-//        assertThat(labelRepository.findById(id)).isPresent();
-//
-//        var addedLabel = labelRepository.findById(id).get();
-//
-//        assertThatJson(body).isNotNull().and(
-//                json -> json.node("id").isEqualTo(addedLabel.getId()),
-//                json -> json.node("name").isEqualTo(addedLabel.getName()),
-//                json -> json.node("createdAt").isEqualTo(addedLabel.getCreatedAt().format(TestUtils.FORMATTER))
-//        );
-//    }
+    @Test
+    public void testShow() throws Exception {
+        var label = testUtils.generateLabel();
+        labelRepository.save(label);
+
+        var result = mockMvc.perform(get("/api/labels/" + label.getId()).with(token))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        var body = result.getResponse().getContentAsString();
+        assertThatJson(body).isNotNull().and(
+                json -> json.node("id").isEqualTo(label.getId()),
+                json -> json.node("name").isEqualTo(label.getName()),
+                json -> json.node("createdAt").isEqualTo(label.getCreatedAt().format(TestUtils.FORMATTER))
+        );
+
+        var receivedLabel = om.readValue(body, Label.class);
+        assertThat(receivedLabel).isEqualTo(label);
+    }
+
+    @Test
+    public void testCreate() throws Exception {
+        var label = testUtils.generateLabel();
+
+        var request = post("/api/labels")
+                .with(token)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(om.writeValueAsString(label));
+
+        var result = mockMvc.perform(request)
+                .andExpect(status().isCreated())
+                .andReturn();
+
+        var body = result.getResponse().getContentAsString();
+
+        var id = om.readTree(body).get("id").asLong();
+        assertThat(labelRepository.findById(id)).isPresent();
+
+        var addedLabel = labelRepository.findById(id).get();
+
+        assertThatJson(body).isNotNull().and(
+                json -> json.node("id").isEqualTo(addedLabel.getId()),
+                json -> json.node("name").isEqualTo(addedLabel.getName()),
+                json -> json.node("createdAt").isEqualTo(addedLabel.getCreatedAt().format(TestUtils.FORMATTER))
+        );
+    }
 
     @Test
     public void testUpdate() throws Exception {
