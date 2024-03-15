@@ -71,7 +71,8 @@ public class TaskControllerTest {
                 .andReturn();
 
         var body = result.getResponse().getContentAsString();
-        var tasks = om.readValue(body, new TypeReference<List<Task>>() { });
+        var tasks = om.readValue(body, new TypeReference<List<Task>>() {
+        });
         var expected = taskRepository.findAll();
 
         assertThat(tasks).containsAll(expected);
