@@ -142,7 +142,7 @@ public class LabelControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isOk());
 
-        label = labelRepository.findById(label.getId()).get();
+        label = labelRepository.findById(label.getId()).orElse(label);
         assertThat(label.getName()).isEqualTo(newName);
     }
 

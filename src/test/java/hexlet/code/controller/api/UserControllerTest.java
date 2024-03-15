@@ -114,7 +114,7 @@ public class UserControllerTest {
         var id = om.readTree(body).get("id").asLong();
         assertThat(userRepository.findById(id)).isPresent();
 
-        var addedUser = userRepository.findById(id).get();
+        var addedUser = userRepository.findById(id).orElse(user);
 
         assertThatJson(body).and(
                 json -> json.node("id").isEqualTo(addedUser.getId()),
@@ -152,7 +152,7 @@ public class UserControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isOk());
 
-        user = userRepository.findById(user.getId()).get();
+        user = userRepository.findById(user.getId()).orElse(user);
 
         assertThat(user.getEmail()).isEqualTo(newEmail);
         assertThat(user.getFirstName()).isEqualTo(newName);
