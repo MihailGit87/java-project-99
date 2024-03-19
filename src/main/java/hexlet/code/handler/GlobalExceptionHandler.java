@@ -2,8 +2,6 @@ package hexlet.code.handler;
 
 import hexlet.code.exception.ResourceNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,9 +22,10 @@ import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ResponseStatus(NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    public String handleResourceNotFoundException(ResourceNotFoundException exception) {
+        return exception.getMessage();
     }
 
     @ResponseStatus(UNAUTHORIZED)
@@ -46,18 +45,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public String noSuchElementExceptionHandler(NoSuchElementException exception) {
         return exception.getMessage();
     }
-
-//    @ResponseStatus(BAD_REQUEST)
-//    @ExceptionHandler({HttpMessageNotReadableException.class})
-//    public String validationExceptionsHandler(Exception exception) {
-//        return exception.getMessage();
-//    }
-//
-//    @ResponseStatus(UNPROCESSABLE_ENTITY)
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public List<ObjectError> validationExceptionsHandler(MethodArgumentNotValidException exception) {
-//        return exception.getAllErrors();
-//    }
 
     @ResponseStatus(UNPROCESSABLE_ENTITY)
     @ExceptionHandler(DataIntegrityViolationException.class)

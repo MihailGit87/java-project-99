@@ -115,7 +115,7 @@ public class LabelControllerTest {
         var id = om.readTree(body).get("id").asLong();
         assertThat(labelRepository.findById(id)).isPresent();
 
-        var addedLabel = labelRepository.findById(id).get();
+        var addedLabel = labelRepository.findById(id).orElse(label);
 
         assertThatJson(body).isNotNull().and(
                 json -> json.node("id").isEqualTo(addedLabel.getId()),
@@ -156,15 +156,4 @@ public class LabelControllerTest {
 
         assertThat(labelRepository.findById(label.getId())).isEmpty();
     }
-
-//    @Test
-//    public void testDestroyButLabelIsUsing() throws Exception {
-//        var task = testUtils.generateTask();
-//        taskRepository.save(task);
-//
-//        var label = task.getLabels().iterator().next();
-//
-//        mockMvc.perform(delete("/api/labels/" + label.getId()).with(token))
-//                .andExpect(status().isInternalServerError());
-//    }
 }

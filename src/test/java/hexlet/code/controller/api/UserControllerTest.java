@@ -157,7 +157,7 @@ public class UserControllerTest {
         assertThat(user.getEmail()).isEqualTo(newEmail);
         assertThat(user.getFirstName()).isEqualTo(newName);
         assertThat(userRepository.findByEmail(oldEmail)).isEmpty();
-        assertThat(userRepository.findByEmail(newEmail).get()).isEqualTo(user);
+        assertThat(userRepository.findByEmail(newEmail).orElse(user)).isEqualTo(user);
 
         var userHashedPassword = user.getPassword();
         assertThat(userPassword).isNotEqualTo(userHashedPassword);

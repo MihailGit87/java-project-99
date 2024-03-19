@@ -32,7 +32,7 @@ public class TaskService {
 
     public TaskDTO findById(Long id) {
         var task = taskRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Task not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Task not found by id: " + id));
         return taskMapper.map(task);
     }
 
@@ -44,7 +44,7 @@ public class TaskService {
 
     public TaskDTO update(Long id, TaskUpdateDTO dto) {
         var task = taskRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Task not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Task not found by id: " + id));
         taskMapper.update(dto, task);
         taskRepository.save(task);
         return taskMapper.map(task);

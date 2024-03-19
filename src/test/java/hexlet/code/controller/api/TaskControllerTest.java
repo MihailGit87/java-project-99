@@ -168,7 +168,7 @@ public class TaskControllerTest {
         var id = om.readTree(body).get("id").asLong();
         assertThat(taskRepository.findById(id)).isPresent();
 
-        var addedTask = taskRepository.findById(id).get();
+        var addedTask = taskRepository.findById(id).orElse(task);
 
         assertThatJson(body).isNotNull().and(
                 json -> json.node("id").isEqualTo(addedTask.getId()),

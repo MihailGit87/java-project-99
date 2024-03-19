@@ -57,7 +57,7 @@ public abstract class TaskMapper {
 
     public TaskStatus toEntity(String slug) {
         return taskStatusRepository.findBySlug(slug)
-                .orElseThrow(() -> new ResourceNotFoundException("Status not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Status not found by slug: " + slug));
     }
 
     public List<Label> toEntities(List<Long> labelIds) {

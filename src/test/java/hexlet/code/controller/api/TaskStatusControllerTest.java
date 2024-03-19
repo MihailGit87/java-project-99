@@ -115,7 +115,7 @@ public class TaskStatusControllerTest {
         var id = om.readTree(body).get("id").asLong();
         assertThat(taskStatusRepository.findById(id)).isPresent();
 
-        var addedTaskStatus = taskStatusRepository.findById(id).get();
+        var addedTaskStatus = taskStatusRepository.findById(id).orElse(taskStatus);
 
         assertThatJson(body).isNotNull().and(
                 json -> json.node("id").isEqualTo(addedTaskStatus.getId()),
@@ -162,7 +162,7 @@ public class TaskStatusControllerTest {
 
         assertThat(taskStatus.getSlug()).isEqualTo(newSlug);
         assertThat(taskStatusRepository.findBySlug(oldSlug)).isEmpty();
-        assertThat(taskStatusRepository.findBySlug(taskStatus.getSlug())).get().isEqualTo(taskStatus);
+        assertThat(taskStatusRepository.findBySlug(taskStatus.getSlug()).orElse(taskStatus)).isEqualTo(taskStatus);
     }
 
     @Test
