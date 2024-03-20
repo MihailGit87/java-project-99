@@ -45,7 +45,6 @@ public class TestUtils {
     @Autowired
     private TaskRepository taskRepository;
 
-    @Bean
     public User generateUser() {
         return Instancio.of(User.class)
                 .ignore(Select.field(User::getId))
@@ -58,7 +57,6 @@ public class TestUtils {
                 .create();
     }
 
-    @Bean
     public TaskStatus generateTaskStatus() {
         var slugAndName = faker.lorem().word();
         return Instancio.of(TaskStatus.class)

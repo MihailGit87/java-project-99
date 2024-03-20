@@ -115,7 +115,7 @@ public class LabelControllerTest {
         var id = om.readTree(body).get("id").asLong();
         assertThat(labelRepository.findById(id)).isPresent();
 
-        var addedLabel = labelRepository.findById(id).orElse(label);
+        var addedLabel = labelRepository.findByName(label.getName()).orElse(null);
 
         assertThatJson(body).isNotNull().and(
                 json -> json.node("id").isEqualTo(addedLabel.getId()),
@@ -142,7 +142,7 @@ public class LabelControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isOk());
 
-        label = labelRepository.findById(label.getId()).orElse(label);
+        label = labelRepository.findById(label.getId()).orElse(null);
         assertThat(label.getName()).isEqualTo(newName);
     }
 
