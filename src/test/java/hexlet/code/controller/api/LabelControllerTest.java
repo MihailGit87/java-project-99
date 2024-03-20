@@ -153,7 +153,6 @@ public class LabelControllerTest {
 
         mockMvc.perform(delete("/api/labels/" + label.getId()).with(token))
                 .andExpect(status().isNoContent());
-
         assertThat(labelRepository.findById(label.getId())).isEmpty();
     }
 }
