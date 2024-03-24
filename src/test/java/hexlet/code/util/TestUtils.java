@@ -12,7 +12,6 @@ import net.datafaker.Faker;
 import org.instancio.Instancio;
 import org.instancio.Select;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.time.format.DateTimeFormatter;
@@ -67,7 +66,6 @@ public class TestUtils {
                 .create();
     }
 
-    @Bean
     public Label generateLabel() {
         return Instancio.of(Label.class)
                 .ignore(Select.field(Label::getId))
@@ -77,7 +75,6 @@ public class TestUtils {
                 .create();
     }
 
-    @Bean
     public Task generateTask() {
         var task = Instancio.of(Task.class)
                 .ignore(Select.field(Task::getId))
@@ -106,7 +103,6 @@ public class TestUtils {
         return task;
     }
 
-    @Bean
     public void clean() {
         taskRepository.deleteAll();
         userRepository.deleteAll();
